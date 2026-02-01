@@ -8,24 +8,24 @@ public class FilterJobRoleOnJobRoleIdCliCommandFactory : ICliCommandFactory<Filt
 {
     public bool CanCreateWhen(CliInstruction instruction, List<CliCommandArtefact> artefacts)
     {
-        var previouslyCalledSomethingCommand = artefacts.LastCommandRanWas<JobRoleCliCommand>();
+        var afterJobRoleCommand = artefacts.LastCommandRanWas<JobRoleCliCommand>();
 
-        var calledFilterOnSubCommand = instruction.SubInstructionName == FilterCliCommand.SubCommandNames.FilterOn;
+        var filteringOn = instruction.SubInstructionName == FilterCliCommand.SubCommandNames.FilterOn;
         
-        return previouslyCalledSomethingCommand && calledFilterOnSubCommand;
+        return afterJobRoleCommand && filteringOn;
     }
 
     public CliCommand Create(CliInstruction instruction, List<CliCommandArtefact> artefacts)
     {
-        var somethingAggregatorArtefact = artefacts
+        var aggregatorArtefact = artefacts
             .OfListAggregatorType<JobRoleAggregate>();
         
-        var categoryIdArgument = instruction
+        var jobRoleIdArgument = instruction
             .Arguments
             .OfRequiredType<int>(FilterJobRoleOnJobRoleIdCliCommand.ArgumentNames.JobRoleId);
         
         return new FilterJobRoleOnJobRoleIdCliCommand(
-            somethingAggregatorArtefact!.ArtefactValue,
-            categoryIdArgument.ArgumentValue);
+            aggregatorArtefact!.ArtefactValue,
+            jobRoleIdArgument.ArgumentValue);
     }
 }
