@@ -1,15 +1,8 @@
 ﻿using KitCli;
-using KitCli.Commands.Abstractions.Extensions;
-using KitCli.Instructions.Abstractions;
-
-var programAssembly = typeof(Program).Assembly;
+using KitCli.Example.Filtering;
 
 var app = new CliAppBuilder()
     .WithCli<JobRoleFilteringCliApp>()
-    .WithUserSecretSettings<JobRoleFilteringCliApp>()
-    .WithSettings<InstructionSettings>()
-    .WithServices(services => services
-        .AddCommandsFromAssembly(programAssembly)
-        .AddListAggregatorCommandArtefactsFromAssembly(programAssembly));
+    .WithRegistry<JobRoleFilteringRegistry>();
 
 await app.Run();

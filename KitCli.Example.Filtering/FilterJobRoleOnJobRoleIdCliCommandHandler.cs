@@ -34,8 +34,8 @@ public class FilterJobRoleOnJobRoleIdCliCommandHandler : CliCommandHandler, ICli
         
         var outcomes = new List<CliCommandOutcome>
         {
-            new FilterCliCommandOutcome(filter),
             new CliCommandTableOutcome(table),
+            new FilterCliCommandOutcome(filter)
         };
         
         return Task.FromResult(outcomes.ToArray());
