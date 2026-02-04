@@ -11,8 +11,7 @@ public class JobRoleCliCommandHandler : CliCommandHandler, ICliCommandHandler<Jo
     {
         var aggregator = new JobRoleAggregator(People.All);
         
-        var table = new CliTable();
-        table.ShowRowCount = false;
+        var table = new Table();
         table.Columns.AddRange("Job Role ID", "Count");
         
         foreach (var aggregate in aggregator.Aggregate())
@@ -25,7 +24,7 @@ public class JobRoleCliCommandHandler : CliCommandHandler, ICliCommandHandler<Jo
         
         var outcomes = new CliCommandOutcome[]
         {
-            new CliCommandTableOutcome(table),
+            new TableCliCommandOutcome(table),
             new ListAggregatorCliCommandOutcome<JobRoleAggregate>(aggregator)
         };
         

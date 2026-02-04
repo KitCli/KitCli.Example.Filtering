@@ -18,9 +18,8 @@ public class FilterJobRoleOnJobRoleIdCliCommandHandler : CliCommandHandler, ICli
             nameof(FilterJobRoleOnJobRoleIdCliCommand.JobRoleId),
             command.JobRoleId);
         
-        var table = new CliTable
+        var table = new Table
         {
-            ShowRowCount = false,
             Columns = ["Job Role ID", "Count"]
         };
         
@@ -34,7 +33,7 @@ public class FilterJobRoleOnJobRoleIdCliCommandHandler : CliCommandHandler, ICli
         
         var outcomes = new List<CliCommandOutcome>
         {
-            new CliCommandTableOutcome(table),
+            new TableCliCommandOutcome(table),
             new FilterCliCommandOutcome(filter)
         };
         

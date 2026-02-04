@@ -9,7 +9,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <PackageReference Include="KitCli" Version="1.0.4" />
+      <PackageReference Include="KitCli" Version="1.0.10" />
     </ItemGroup>
 
 </Project>
